@@ -1,18 +1,26 @@
 package main
 
 import (
-	"fmt"
 	"github.com/emersion/go-imap"
+	"github.com/emersion/go-imap/client"
+	"log"
+	"sync"
 )
 
 func main() {
 	var config Configuration
+	var imapClient *client.Client
+	var wg sync.WaitGroup
+
 	mailMessagesChan := make(chan *imap.Message, 100)
 	config = loadConfig()
-	fmt.Printf("%s\n", config)
-	go readImapMessages(&config, mailMessagesChan)
 
-	for msg := range mailMessagesChan {
-		fmt.Printf("# %s\n", msg.Envelope.Subject)
+	imapClient, err := client.DialTLS(config.MailServer.Host+":"+config.MailServer.ImapPort, nil)
+	if err != nil {
+		log.Fatal(err)
 	}
+	wg.Add(1)
+	go listImapMessages(&config, mailMessagesChan, imapClient, &wg)
+	go parseMessage(mailMessagesChan, &wg)
+	wg.Wait()
 }
