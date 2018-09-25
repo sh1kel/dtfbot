@@ -28,11 +28,12 @@ type Configuration struct {
 }
 
 type User struct {
-	FullName  string
-	Email     string
-	Password  string
-	Cookie    string
-	Confirmed bool
+	id        int    `db:"id"`
+	FullName  string `db:"Name"`
+	Email     string `db:"Email"`
+	Password  string `db:"Password"`
+	Cookie    string `db:"Cookie"`
+	Confirmed bool   `db:"Confirmed"`
 }
 
 func loadConfig() Configuration {
