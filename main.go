@@ -19,7 +19,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	wg.Add(1)
+	wg.Add(2)
 	go listImapMessages(&config, mailMessagesChan, imapClient, &wg)
 	go parseMessage(mailMessagesChan, &wg)
 	wg.Wait()
