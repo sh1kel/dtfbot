@@ -1,2 +1,9 @@
+# my own config
 config.json
+
+# binary build
 dtfbot
+
+# vendor dir
+vendor/**
+!/vendor/vendor.json
