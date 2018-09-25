@@ -17,13 +17,22 @@ type Mail struct {
 type Db struct {
 	Host     string `json:"Host"`
 	Port     string `json:"Port"`
+	DbName   string `json:"DbName"`
 	User     string `json:"Username"`
 	Password string `json:"Password"`
 }
 
 type Configuration struct {
 	MailServer Mail `json:"MailAccount"`
-	Postgres   Db   `json:"DbAccount"`
+	Database   Db   `json:"DbAccount"`
+}
+
+type User struct {
+	FullName  string
+	Email     string
+	Password  string
+	Cookie    string
+	Confirmed bool
 }
 
 func loadConfig() Configuration {
