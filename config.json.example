@@ -1,0 +1,14 @@
+{
+  "MailAccount": {
+    "Host": "imap.domain.tld",
+    "Port": "443",
+    "Username": "user@domain.tld",
+    "Password": "Password12345"
+  },
+  "DbAccount": {
+    "Host": "localhost",
+    "Port": "5432",
+    "Username": "dbuser",
+    "Password": "Password6789"
+  }
+}

@@ -34,5 +34,6 @@ func loadConfig() Configuration {
 		os.Exit(1)
 	}
 	json.Unmarshal(config, &configData)
+	fmt.Printf("%s\n", configData)
 	return configData
 }
